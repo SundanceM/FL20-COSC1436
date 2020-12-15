@@ -25,6 +25,7 @@ void menu6Dominguez();
 void menu22Turcios();
 void menu21Tourkakis();
 void menu8Fuentes();
+void menu19Sundance();
 
 // ***************************************************************
 // END OF FUNCTION PROTOTYPE AREA
@@ -95,7 +96,8 @@ int main()
                 break;
             case 18:                 // Souhala - call to function goes here
                 break;
-            case 19:                 // Sundance - call to function goes here
+            case 19:
+                void menu19Sundance(); // Sundance - call to function goes here
                 break;
             case 20:                 // Swift - call to function goes here
                 break;
@@ -109,7 +111,7 @@ int main()
                 break;
             case 24:                 // Smiley - call to function goes here
                 menu24Smiley(11);
-                break;        
+                break;
             }
         }
     } while (choice != EXIT);
@@ -160,16 +162,16 @@ void showMenu()
 // *****************************************************************************************
 // Function Definitions Section
 // *****************************************************************************************
-// Add your function below.  
+// Add your function below.
 //    Things to check:
 //          Function prototype added at the top
 //          Available "includes" that could be used
 //          Function called from showMenu()
 //          All return types MUST be void.
-//  
+//
 // FunctionName:  menuXXYYYYYYYYYYYY(your parameters)
 //                     where XX is your menu number and
-//                           YY is your last name with no spaces (camel case)           
+//                           YY is your last name with no spaces (camel case)
 // *****************************************************************************************
 
 void menu21Tourkakis()
@@ -312,7 +314,7 @@ void menu6Dominguez()
                     << "      /::::::::::::::::/        \n"
                     << "     /::::========::::/         \n"
                     << "    `~~~~~~~~~~~~~~~~`          \n";
-            break;   
+            break;
 
         case 3:     // Call to plain face computer.
                 cout  << "      .--------------------.    \n"
@@ -330,7 +332,7 @@ void menu6Dominguez()
                     << "    `~~~~~~~~~~~~~~~~`          \n";
             break;
 
-        case 4:     // Call to bad face computer.                  
+        case 4:     // Call to bad face computer.
                 cout  << "      .--------------------.    \n"
                     << "      |.-````````````````-.|    \n"
                     << "      ||     v      v     ||    \n"
@@ -417,3 +419,70 @@ void menu8Fuentes()
                                                                             // of polygon
     cout << "The area of your polygon is " << area << " square units" << endl;
 }
+
+// *****************************************************************************************
+// MENU ID:          19
+// FUNCTION:         menu19Sundance
+// DESCRIPTION:      calculates monthly payment, total cost and total interest of a loan
+// OUTPUT EXAMPLE:   User enters
+//                   Loan Amount: 100000
+//                   Interest Rate: 3
+//                   Number of months of loan: 360
+//                   Program outputs the following:
+//                   Loan Amount is: $100000
+//                   Interest Rate is: 3%
+//                   Life of Loan in months: 360
+//                   Your monthly payment will be: $421.60
+//                   At this rate, the total amount you will pay is: $151777.45
+//                   The total interest paid on loan is: $51777.45
+// *****************************************************************************************
+
+    void menu19Sundance()
+    {
+        double loanAmount;
+        double interest;
+        double monthlyPayment;
+        double totalCost;
+        double newInterest;
+        double monthsOfLoan;
+        double years;
+        double totalInterest;
+
+
+        cout << "This program will calculate the monthly payment of your loan." << endl;
+        cout << "Please enter the loan amount: ";
+
+        cin >> loanAmount;
+        cout << endl;
+
+        cout << "Please enter the interest rate (interest rate must be above zero): ";
+        cin >> interest;
+        cout << endl;
+
+        cout << "Please enter the number of months the loan will be financed for: ";
+        cin >> monthsOfLoan;
+        cout << endl;
+
+        newInterest = (interest / 100) / 12;
+        years = monthsOfLoan / 12;
+
+        monthlyPayment = loanAmount * newInterest / (1 - pow(1 + newInterest, -monthsOfLoan));
+
+        totalCost = (monthlyPayment * monthsOfLoan);
+
+        totalInterest = totalCost - loanAmount;
+
+
+        cout << "	************************************************************************" << endl;
+        cout << "	* Your loan information is as follows: " << setw(33) << "*" << endl;
+        cout << "	* Loan amount is: " << "$" << setprecision(2) << fixed << loanAmount << setw(44) << "*" << endl;
+        cout << "	* Interest rate is: " << interest << "%" << setw(47) << "*" << endl;
+        cout << "	* Life of loan in months: " << monthsOfLoan << setw(40) << "*" << endl;
+        cout << "	* Your monthly payment will be: " << "$" << setprecision(2) << fixed << monthlyPayment
+            << setw(33) << "*" << endl;
+        cout << "	* At this rate, the total amount you will pay is: " << "$" << setprecision(2) << fixed
+            << totalCost << setw(12) << "*" << endl;
+        cout << "	* The total interest paid on loan is: " << setprecision(2) << fixed <<
+            totalInterest << setw(26) << "*" << endl;
+        cout << "	************************************************************************" << endl;
+    }
